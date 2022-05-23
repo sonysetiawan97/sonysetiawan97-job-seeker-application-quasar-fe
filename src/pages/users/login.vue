@@ -34,15 +34,6 @@
         />
       </q-card-section>
       <q-card-actions>
-        <q-checkbox
-          id="rememberMe"
-          v-model="rememberMe"
-          :label="$t('auth.login.remember_me')"
-        />
-        <q-space />
-        <router-link to="/forgot-password">
-          <a>{{ $t('auth.login.password_forgot') }}</a>
-        </router-link>
 
         <q-btn
           color="secondary"
