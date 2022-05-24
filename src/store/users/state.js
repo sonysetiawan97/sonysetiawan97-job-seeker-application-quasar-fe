@@ -2,6 +2,7 @@ import { required } from '@vuelidate/validators'
 import state from '../resources/state'
 export const collection = 'users'
 export const params = {
+  relationship: 'roles',
   'orderby[users.id]': 'desc'
 }
 
