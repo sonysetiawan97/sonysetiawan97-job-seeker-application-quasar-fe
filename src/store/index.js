@@ -1,26 +1,29 @@
-import { store } from 'quasar/wrappers'
-import { createStore } from 'vuex'
+import { store } from "quasar/wrappers";
+import { createStore } from "vuex";
 
-import resources from './resources'
-import auth from './auth'
+import resources from "./resources";
+import auth from "./auth";
 
-import banners from './banners'
+import banners from "./banners";
 // CONTENTS:
-import faq from './faq'
-import terms from './terms'
+import faq from "./faq";
+import terms from "./terms";
 
-import countries from './countries'
-import provinces from './provinces'
-import cities from './cities'
+import countries from "./countries";
+import provinces from "./provinces";
+import cities from "./cities";
 
-import users from './users'
-import addresses from './addresses'
-import contacts from './contacts'
-import files from './files'
+import users from "./users";
+import addresses from "./addresses";
+import contacts from "./contacts";
+import files from "./files";
 
-import roles from './roles'
-import permissions from './permissions'
-import sysparam from './sysparam'
+import roles from "./roles";
+import permissions from "./permissions";
+import sysparam from "./sysparam";
+
+import jobs from "./jobs";
+import job_applicant from "./jobApplicant";
 
 /*
  * If not building with SSR mode, you can
@@ -52,14 +55,17 @@ export default store(function (/* { ssrContext } */) {
 
       roles,
       permissions,
-      sysparam
+      sysparam,
 
+      // JOB SEEKER
+      jobs,
+      job_applicant,
     },
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only
     // strict: process.env.DEBUGGING
-    strict: false
-  })
+    strict: false,
+  });
 
-  return Store
-})
+  return Store;
+});
