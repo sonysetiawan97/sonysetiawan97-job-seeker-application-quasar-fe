@@ -99,7 +99,11 @@
             </q-item-section>
           </q-item>
 
-          <div v-if="myRoles.includes('job_seeker') || myRoles.includes('superadmin')">
+          <div
+            v-if="
+              myRoles.includes('job_seeker') || myRoles.includes('superadmin')
+            "
+          >
             <q-separator inset class="q-my-sm" />
             <q-item-label header>Job Seeker</q-item-label>
 
@@ -114,7 +118,11 @@
             </q-expansion-item>
           </div>
 
-          <div v-if="myRoles.includes('recruiter') || myRoles.includes('superadmin')">
+          <div
+            v-if="
+              myRoles.includes('recruiter') || myRoles.includes('superadmin')
+            "
+          >
             <q-separator inset class="q-my-sm" />
             <q-item-label header>Recruiter</q-item-label>
 
@@ -126,6 +134,37 @@
               <q-item clickable v-ripple :inset-level="1" to="/job_applicant">
                 <q-item-section>Applicant</q-item-section>
               </q-item>
+            </q-expansion-item>
+
+            <q-expansion-item icon="business" label="Companies" class="q-my-sm">
+              <div v-if="this.myCompany">
+                <q-item
+                  clickable
+                  v-ripple
+                  :inset-level="1"
+                  :to="`/companies/${this.myCompany.id}`"
+                >
+                  <q-item-section>My Company</q-item-section>
+                </q-item>
+                <q-item
+                  clickable
+                  v-ripple
+                  :inset-level="1"
+                  :to="`/companies/register`"
+                >
+                  <q-item-section>Change Company</q-item-section>
+                </q-item>
+              </div>
+              <div v-else>
+                <q-item
+                  clickable
+                  v-ripple
+                  :inset-level="1"
+                  :to="`/companies/register`"
+                >
+                  <q-item-section>Register Company</q-item-section>
+                </q-item>
+              </div>
             </q-expansion-item>
           </div>
 
@@ -165,6 +204,9 @@
               <q-item clickable v-ripple :inset-level="1" to="/cities">
                 <q-item-section> Cities </q-item-section>
               </q-item>
+              <q-item clickable v-ripple :inset-level="1" to="/companies">
+                <q-item-section> Companies </q-item-section>
+              </q-item>
             </q-expansion-item>
 
             <q-expansion-item icon="settings" label="Settings" class="q-my-sm">
@@ -193,6 +235,7 @@ export default {
       search: "",
       storage: 0.26,
       myRoles: [],
+      myCompany: null,
     };
   },
   computed: {
@@ -208,11 +251,10 @@ export default {
     },
   },
   mounted() {
-    const { roles } = this.profile;
-    if (roles) {
-      roles.map((entry) => {
-        this.myRoles.push(entry.name);
-      });
+    const { roles, company } = this.profile;
+    this.myRoles = roles;
+    if (company) {
+      this.myCompany = company;
     }
   },
   methods: {
