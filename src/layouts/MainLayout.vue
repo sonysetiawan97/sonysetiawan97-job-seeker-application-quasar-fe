@@ -126,7 +126,12 @@
             <q-separator inset class="q-my-sm" />
             <q-item-label header>Recruiter</q-item-label>
 
-            <q-expansion-item icon="work" label="Jobs" class="q-my-sm">
+            <q-expansion-item
+              icon="work"
+              label="Jobs"
+              class="q-my-sm"
+              v-if="this.myCompany"
+            >
               <q-item clickable v-ripple :inset-level="1" to="/jobs">
                 <q-item-section>Jobs</q-item-section>
               </q-item>
