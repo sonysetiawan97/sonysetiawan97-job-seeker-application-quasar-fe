@@ -2,625 +2,665 @@
 // so you can safely delete all default props below
 
 export default {
-  failed: 'Action failed',
-  success: 'Action was successful',
+  failed: "Action failed",
+  success: "Action was successful",
   buttons: {
-    send: 'Send'
+    send: "Send",
   },
   auth: {
-    network_error: 'Network error. Please check your internet connection',
-    submit: 'Submit',
-    home: 'Home',
-    navigation: 'Navigation',
-    my_account: 'My account',
+    network_error: "Network error. Please check your internet connection",
+    submit: "Submit",
+    home: "Home",
+    navigation: "Navigation",
+    my_account: "My account",
     administrator: {
-      title: 'Administrator'
+      title: "Administrator",
     },
     superuser: {
-      title: 'Superuser',
+      title: "Superuser",
       users: {
-        users: 'Users'
-      }
+        users: "Users",
+      },
     },
     labels: {
-      email: 'Email address',
-      username: 'Username',
-      name: 'Name',
-      password: 'Password',
-      remember_me: 'Remember me',
-      repeat_password: 'Repeat password'
+      email: "Email address",
+      username: "Username",
+      name: "Name",
+      password: "Password",
+      remember_me: "Remember me",
+      repeat_password: "Repeat password",
     },
     errors: {
       password_length:
-        'The minimum length of the password is {length} characters.',
-      password_match: 'Passwords do not match.',
-      email: 'A valid email address is required'
+        "The minimum length of the password is {length} characters.",
+      password_match: "Passwords do not match.",
+      email: "A valid email address is required",
     },
     login: {
-      login: 'Login',
-      password_forgot: 'Forgot your password?',
+      login: "Login",
+      password_forgot: "Forgot your password?",
       verification_required:
-        'Please check your email and verify your account first.',
-      invalid_credentials: 'Email address or password is incorrect.',
-      email: '@:auth.labels.email',
-      username: '@:auth.labels.username',
-      password: '@:auth.labels.password',
-      remember_me: '@:auth.labels.remember_me'
+        "Please check your email and verify your account first.",
+      invalid_credentials: "Email address or password is incorrect.",
+      email: "@:auth.labels.email",
+      username: "@:auth.labels.username",
+      password: "@:auth.labels.password",
+      remember_me: "@:auth.labels.remember_me",
     },
     register: {
-      register: 'Register',
+      register: "Register",
       invalid_data:
-        'Server could not process the request. Please correct the sent data.',
+        "Server could not process the request. Please correct the sent data.",
       already_registered:
-        'Email address is already registered. Please check your email for verification.',
+        "Email address is already registered. Please check your email for verification.",
       account_created:
-        'Please check your email to verify your registration. This sometimes can take up to 10 minutes. Please check the spam folder if the email has not been received.',
-      email: '@:auth.labels.email',
-      name: '@:auth.labels.name',
-      password: '@:auth.labels.password',
-      repeat_password: '@:auth.labels.repeat_password',
+        "Please check your email to verify your registration. This sometimes can take up to 10 minutes. Please check the spam folder if the email has not been received.",
+      email: "@:auth.labels.email",
+      name: "@:auth.labels.name",
+      password: "@:auth.labels.password",
+      repeat_password: "@:auth.labels.repeat_password",
       errors: {
-        password_length: '@:auth.errors.password_length',
-        password_match: '@:auth.errors.password_match',
-        email: '@:auth.errors.email'
+        password_length: "@:auth.errors.password_length",
+        password_match: "@:auth.errors.password_match",
+        email: "@:auth.errors.email",
       },
       check_email:
-        'You want to register with the email address {email}, is this correct?'
+        "You want to register with the email address {email}, is this correct?",
     },
     verification: {
-      verification_success: 'Your e-mail has been verified. You can now login.',
-      verification_failed: 'Verification has failed.'
+      verification_success: "Your e-mail has been verified. You can now login.",
+      verification_failed: "Verification has failed.",
     },
     logout: {
-      logout_confirmation: 'Are you sure you want to log out?',
-      confirm: 'Confirm',
-      logout: 'Logout',
-      cancel: 'Cancel'
+      logout_confirmation: "Are you sure you want to log out?",
+      confirm: "Confirm",
+      logout: "Logout",
+      cancel: "Cancel",
     },
     password: {
       forgot: {
-        header: 'Request a new password',
-        check_email: 'Please check your email to reset your password.',
-        email: '@:auth.labels.email'
+        header: "Request a new password",
+        check_email: "Please check your email to reset your password.",
+        email: "@:auth.labels.email",
       },
       reset: {
-        header: 'Reset your password',
+        header: "Reset your password",
         success:
-          'Your password has been reset. You can now login with the new password.'
+          "Your password has been reset. You can now login with the new password.",
       },
       errors: {
-        password_length: '@:auth.errors.password_length',
-        password_match: '@:auth.errors.password_match'
-      }
+        password_length: "@:auth.errors.password_length",
+        password_match: "@:auth.errors.password_match",
+      },
     },
     users: {
       labels: {
-        email: 'Email',
-        name: 'Name'
+        email: "Email",
+        name: "Name",
       },
-      edit_label: 'Edit',
-      verify_label: 'Verify',
-      verify_message: 'Are you sure you want to verify {user}?'
-    }
+      edit_label: "Edit",
+      verify_label: "Verify",
+      verify_message: "Are you sure you want to verify {user}?",
+    },
   },
   countries: {
     index: {
-      title: 'Countries'
+      title: "Countries",
     },
     create: {
-      title: 'Create new Country'
+      title: "Create new Country",
     },
     show: {
-      title: 'Detail Country'
+      title: "Detail Country",
     },
     edit: {
-      title: 'Update Country'
+      title: "Update Country",
     },
     trash: {
-      title: 'Trash of Countries'
+      title: "Trash of Countries",
     },
     trashed: {
-      title: 'Deleted Country'
+      title: "Deleted Country",
     },
   },
   provinces: {
     index: {
-      title: 'Provinces'
+      title: "Provinces",
     },
     create: {
-      title: 'Create new Province'
+      title: "Create new Province",
     },
     show: {
-      title: 'Detail Province'
+      title: "Detail Province",
     },
     edit: {
-      title: 'Update Province'
+      title: "Update Province",
     },
     trash: {
-      title: 'Trash of Provinces'
+      title: "Trash of Provinces",
     },
     trashed: {
-      title: 'Deleted Province'
+      title: "Deleted Province",
     },
   },
   cities: {
     index: {
-      title: 'Cities'
+      title: "Cities",
     },
     create: {
-      title: 'Create new City'
+      title: "Create new City",
     },
     show: {
-      title: 'Detail City'
+      title: "Detail City",
     },
     edit: {
-      title: 'Update City'
+      title: "Update City",
     },
     trash: {
-      title: 'Trash of Cities'
+      title: "Trash of Cities",
     },
     trashed: {
-      title: null
+      title: null,
     },
   },
   banners: {
     index: {
-      title: 'Banners'
+      title: "Banners",
     },
     create: {
-      title: 'Create new Banner'
+      title: "Create new Banner",
     },
     show: {
-      title: 'Detail Banner'
+      title: "Detail Banner",
     },
     edit: {
-      title: 'Update Banner'
+      title: "Update Banner",
     },
     trash: {
-      title: 'Trash of Banners'
+      title: "Trash of Banners",
     },
     trashed: {
-      title: null
+      title: null,
     },
   },
   faq: {
     index: {
-      title: 'F.A.Q'
+      title: "F.A.Q",
     },
     create: {
-      title: 'Create new F.A.Q'
+      title: "Create new F.A.Q",
     },
     show: {
-      title: 'Detail F.A.Q'
+      title: "Detail F.A.Q",
     },
     edit: {
-      title: 'Update F.A.Q'
+      title: "Update F.A.Q",
     },
     trash: {
-      title: 'Trash of F.A.Q'
+      title: "Trash of F.A.Q",
     },
     trashed: {
-      title: null
+      title: null,
     },
   },
   terms: {
     index: {
-      title: 'Terms & Conditions'
+      title: "Terms & Conditions",
     },
     create: {
-      title: 'Create new Terms & Conditions'
+      title: "Create new Terms & Conditions",
     },
     show: {
-      title: 'Detail Terms & Conditions'
+      title: "Detail Terms & Conditions",
     },
     edit: {
-      title: 'Update Terms & Conditions'
+      title: "Update Terms & Conditions",
     },
     trash: {
-      title: 'Trash of Terms & Conditions'
+      title: "Trash of Terms & Conditions",
     },
     trashed: {
-      title: null
+      title: null,
     },
   },
   users: {
     index: {
-      title: 'Users'
+      title: "Users",
     },
     create: {
-      title: 'Create new User'
+      title: "Create new User",
     },
     show: {
-      title: 'Detail User'
+      title: "Detail User",
     },
     edit: {
-      title: 'Update User'
+      title: "Update User",
     },
     trash: {
-      title: 'Trash of Users'
+      title: "Trash of Users",
     },
     trashed: {
-      title: null
+      title: null,
     },
   },
   teachers: {
     index: {
-      title: 'Digital Partners'
+      title: "Digital Partners",
     },
     create: {
-      title: 'Create new Digital Partner'
+      title: "Create new Digital Partner",
     },
     show: {
-      title: 'Detail Digital Partner'
+      title: "Detail Digital Partner",
     },
     edit: {
-      title: 'Update Digital Partner'
+      title: "Update Digital Partner",
     },
     trash: {
-      title: 'Trash of Digital Partners'
+      title: "Trash of Digital Partners",
     },
     trashed: {
-      title: null
+      title: null,
     },
   },
   students: {
     index: {
-      title: 'Students'
+      title: "Students",
     },
     create: {
-      title: 'Create new Students'
+      title: "Create new Students",
     },
     show: {
-      title: 'Detail Students'
+      title: "Detail Students",
     },
     edit: {
-      title: 'Update Students'
+      title: "Update Students",
     },
     trash: {
-      title: 'Trash of Students'
+      title: "Trash of Students",
     },
     trashed: {
-      title: null
+      title: null,
     },
   },
   addresses: {
     index: {
-      title: 'Addresses'
+      title: "Addresses",
     },
     create: {
-      title: 'Create new Address'
+      title: "Create new Address",
     },
     show: {
-      title: 'Detail Address'
+      title: "Detail Address",
     },
     edit: {
-      title: 'Update Address'
+      title: "Update Address",
     },
     trash: {
-      title: 'Trash of Addresses'
+      title: "Trash of Addresses",
     },
     trashed: {
-      title: null
+      title: null,
     },
   },
   contacts: {
     index: {
-      title: 'Contacts'
+      title: "Contacts",
     },
     create: {
-      title: 'Create new Contact'
+      title: "Create new Contact",
     },
     show: {
-      title: 'Detail Contact'
+      title: "Detail Contact",
     },
     edit: {
-      title: 'Update Contact'
+      title: "Update Contact",
     },
     trash: {
-      title: 'Trash of Contacts'
+      title: "Trash of Contacts",
     },
     trashed: {
-      title: null
+      title: null,
     },
   },
   files: {
     index: {
-      title: 'Files & Media'
+      title: "Files & Media",
     },
     create: {
-      title: 'Upload Media'
+      title: "Upload Media",
     },
     show: {
-      title: 'Detail Media'
+      title: "Detail Media",
     },
     edit: {
-      title: 'Update Media'
+      title: "Update Media",
     },
     trash: {
-      title: 'Trash of Files & Media'
+      title: "Trash of Files & Media",
     },
     trashed: {
-      title: null
+      title: null,
     },
   },
   videos: {
     index: {
-      title: 'Videos'
+      title: "Videos",
     },
     create: {
-      title: 'Upload Video'
+      title: "Upload Video",
     },
     show: {
-      title: 'Detail Video'
+      title: "Detail Video",
     },
     edit: {
-      title: 'Update Video'
+      title: "Update Video",
     },
     trash: {
-      title: 'Trash of Videos'
+      title: "Trash of Videos",
     },
     trashed: {
-      title: 'Deleted Video'
+      title: "Deleted Video",
     },
   },
   permissions: {
     index: {
-      title: 'Permissions'
+      title: "Permissions",
     },
     create: {
-      title: 'Create new Permission'
+      title: "Create new Permission",
     },
     show: {
-      title: 'Detail Permission'
+      title: "Detail Permission",
     },
     edit: {
-      title: 'Update Permission'
+      title: "Update Permission",
     },
     trash: {
-      title: 'Trash of Permissions'
+      title: "Trash of Permissions",
     },
     trashed: {
-      title: null
+      title: null,
     },
   },
   roles: {
     index: {
-      title: 'Roles'
+      title: "Roles",
     },
     create: {
-      title: 'Create new Role'
+      title: "Create new Role",
     },
     show: {
-      title: 'Detail Role'
+      title: "Detail Role",
     },
     edit: {
-      title: 'Update Role'
+      title: "Update Role",
     },
     trash: {
-      title: 'Trash of Roles'
+      title: "Trash of Roles",
     },
     trashed: {
-      title: 'Deleted Role'
+      title: "Deleted Role",
     },
   },
   sysparam: {
     index: {
-      title: 'Sysparams'
+      title: "Sysparams",
     },
     create: {
-      title: 'Create new Sysparam'
+      title: "Create new Sysparam",
     },
     show: {
-      title: 'Sysparam'
+      title: "Sysparam",
     },
     edit: {
-      title: 'Update Parameter'
+      title: "Update Parameter",
     },
     trash: {
-      title: 'Trash of Sysparams'
+      title: "Trash of Sysparams",
     },
     trashed: {
-      title: null
+      title: null,
     },
   },
   notifications: {
     index: {
-      title: 'Notifications'
+      title: "Notifications",
     },
     create: {
-      title: 'Create new Notifications'
+      title: "Create new Notifications",
     },
     show: {
-      title: 'Detail Notification'
+      title: "Detail Notification",
     },
     edit: {
-      title: 'Update Notification'
+      title: "Update Notification",
     },
     trash: {
-      title: 'Trash of Notifications'
+      title: "Trash of Notifications",
     },
     trashed: {
-      title: null
+      title: null,
     },
   },
   notificationTemplates: {
     index: {
-      title: 'Notification Templates'
+      title: "Notification Templates",
     },
     create: {
-      title: 'Create new Notification Templates'
+      title: "Create new Notification Templates",
     },
     show: {
-      title: 'Notification Template'
+      title: "Notification Template",
     },
     edit: {
-      title: 'Update Notification Template'
+      title: "Update Notification Template",
     },
     trash: {
-      title: 'Trash of Notification Templates'
+      title: "Trash of Notification Templates",
     },
     trashed: {
-      title: null
+      title: null,
     },
   },
   notificationFormats: {
     index: {
-      title: 'Notification Formats'
+      title: "Notification Formats",
     },
     create: {
-      title: 'Create new Notification Formats'
+      title: "Create new Notification Formats",
     },
     show: {
-      title: 'Notification Format'
+      title: "Notification Format",
     },
     edit: {
-      title: 'Update Notification Format'
+      title: "Update Notification Format",
     },
     trash: {
-      title: 'Trash of Notification Formats'
+      title: "Trash of Notification Formats",
     },
     trashed: {
-      title: null
+      title: null,
     },
   },
   notificationsBroadcast: {
     index: {
-      title: 'Notification Formats'
+      title: "Notification Formats",
     },
     create: {
-      title: 'Broadcast'
+      title: "Broadcast",
     },
     show: {
-      title: 'Notification Format'
+      title: "Notification Format",
     },
     edit: {
-      title: 'Update Notification Format'
+      title: "Update Notification Format",
     },
     trash: {
-      title: 'Trash of Notification Formats'
+      title: "Trash of Notification Formats",
     },
     trashed: {
-      title: null
+      title: null,
     },
   },
   degrees: {
     index: {
-      title: 'Degrees'
+      title: "Degrees",
     },
     create: {
-      title: 'Create Degree'
+      title: "Create Degree",
     },
     show: {
-      title: 'Detail Degree'
+      title: "Detail Degree",
     },
     edit: {
-      title: 'Update Degree'
+      title: "Update Degree",
     },
     trash: {
-      title: 'Trash of Degrees'
+      title: "Trash of Degrees",
     },
     trashed: {
-      title: 'Deleted Degree'
+      title: "Deleted Degree",
     },
   },
   levels: {
     index: {
-      title: 'Levels'
+      title: "Levels",
     },
     create: {
-      title: 'Create Level'
+      title: "Create Level",
     },
     show: {
-      title: 'Detail Level'
+      title: "Detail Level",
     },
     edit: {
-      title: 'Update Level'
+      title: "Update Level",
     },
     trash: {
-      title: 'Trash of Levels'
+      title: "Trash of Levels",
     },
     trashed: {
-      title: 'Deleted Level'
+      title: "Deleted Level",
     },
   },
   majors: {
     index: {
-      title: 'Majors'
+      title: "Majors",
     },
     create: {
-      title: 'Create Major'
+      title: "Create Major",
     },
     show: {
-      title: 'Detail Major'
+      title: "Detail Major",
     },
     edit: {
-      title: 'Update Major'
+      title: "Update Major",
     },
     trash: {
-      title: 'Trash of Majors'
+      title: "Trash of Majors",
     },
     trashed: {
-      title: 'Deleted Major'
+      title: "Deleted Major",
     },
   },
   fields: {
     index: {
-      title: 'Fields'
+      title: "Fields",
     },
     create: {
-      title: 'Create Field'
+      title: "Create Field",
     },
     show: {
-      title: 'Detail Field'
+      title: "Detail Field",
     },
     edit: {
-      title: 'Update Field'
+      title: "Update Field",
     },
     trash: {
-      title: 'Trash of Fields'
+      title: "Trash of Fields",
     },
     trashed: {
-      title: 'Deleted Field'
+      title: "Deleted Field",
     },
   },
   classes: {
     index: {
-      title: 'Classes'
+      title: "Classes",
     },
     create: {
-      title: 'Create Class'
+      title: "Create Class",
     },
     show: {
-      title: 'Detail Class'
+      title: "Detail Class",
     },
     edit: {
-      title: 'Update Class'
+      title: "Update Class",
     },
     trash: {
-      title: 'Trash of Classes'
+      title: "Trash of Classes",
     },
     trashed: {
-      title: 'Deleted Class'
+      title: "Deleted Class",
     },
   },
   subjects: {
     index: {
-      title: 'Subjects'
+      title: "Subjects",
     },
     create: {
-      title: 'Create Subject'
+      title: "Create Subject",
     },
     show: {
-      title: 'Detail Subject'
+      title: "Detail Subject",
     },
     edit: {
-      title: 'Update Subject'
+      title: "Update Subject",
     },
     trash: {
-      title: 'Trash of Subjects'
+      title: "Trash of Subjects",
     },
     trashed: {
-      title: 'Deleted Subject'
+      title: "Deleted Subject",
     },
   },
-}
+  jobs: {
+    index: {
+      title: "Jobs",
+    },
+    create: {
+      title: "Create Job",
+    },
+    show: {
+      title: "Detail Job",
+    },
+    edit: {
+      title: "Update Job",
+    },
+    trash: {
+      title: "Trash of Jobs",
+    },
+    trashed: {
+      title: "Deleted Job",
+    },
+  },
+  job_applicant: {
+    index: {
+      title: "Job Applicants",
+    },
+    create: {
+      title: "Create Job Applicant",
+    },
+    show: {
+      title: "Detail Job Applicant",
+    },
+    edit: {
+      title: "Update Job Applicant",
+    },
+    trash: {
+      title: "Trash of Job Applicants",
+    },
+    trashed: {
+      title: "Deleted Job Applicant",
+    },
+  },
+};
