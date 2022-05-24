@@ -309,7 +309,7 @@ export default {
         "hidden",
       ];
     },
-    roleOptions() {
+    userTypeOptions() {
       return [
         {
           label: "Job Seeker",
@@ -336,7 +336,7 @@ export default {
               .dialog({
                 title: "Registered",
                 message:
-                  "Your registration is successfully. Good luck for job seeker.",
+                  "Your registration is successfully.",
                 ok: {
                   flat: true,
                 },
