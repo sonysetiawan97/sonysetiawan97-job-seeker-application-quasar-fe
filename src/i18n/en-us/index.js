@@ -663,4 +663,24 @@ export default {
       title: "Deleted Job Applicant",
     },
   },
+  companies: {
+    index: {
+      title: "Companies",
+    },
+    create: {
+      title: "Create Company",
+    },
+    show: {
+      title: "Detail Company",
+    },
+    edit: {
+      title: "Update Company",
+    },
+    trash: {
+      title: "Trash of Companies",
+    },
+    trashed: {
+      title: "Deleted Company",
+    },
+  },
 };
