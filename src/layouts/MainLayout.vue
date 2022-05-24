@@ -12,42 +12,46 @@
           class="q-ml-md"
         />
 
-        <q-toolbar-title v-if="$q.screen.gt.sm" shrink class="row items-center no-wrap">
+        <q-toolbar-title
+          v-if="$q.screen.gt.sm"
+          shrink
+          class="row items-center no-wrap"
+        >
           <img src="~/assets/startapp.png" width="56" />
-          <span class="q-ml-sm">Startapp</span>
+          <span class="q-ml-sm">Job Seeker</span>
         </q-toolbar-title>
 
         <q-space />
 
-        <q-input class="GPL__toolbar-input" dense standout="bg-white text-dark" v-model="search" placeholder="Search">
+        <q-input
+          class="GPL__toolbar-input"
+          dense
+          standout="bg-white text-dark"
+          v-model="search"
+          placeholder="Search"
+        >
           <template v-slot:prepend>
             <q-icon v-if="search === ''" name="search" />
-            <q-icon v-else name="clear" class="cursor-pointer" @click="search = ''" />
+            <q-icon
+              v-else
+              name="clear"
+              class="cursor-pointer"
+              @click="search = ''"
+            />
           </template>
         </q-input>
 
         <q-space />
 
         <div class="q-gutter-sm row items-center no-wrap">
-          <q-btn round dense flat color="grey-8" icon="notifications" to="/notifications">
-            <q-badge color="red" text-color="white" floating>
-              2
-            </q-badge>
-            <q-tooltip>Notifications</q-tooltip>
-          </q-btn>
-
           <q-btn round dense flat to="/profile">
-            <q-avatar size="26px" icon="face">
-            </q-avatar>
+            <q-avatar size="26px" icon="face"> </q-avatar>
             <q-tooltip>Your Profile</q-tooltip>
           </q-btn>
           <q-btn flat round dense icon="more_vert">
-            <q-menu
-              transition-show="jump-down"
-              transition-hide="jump-up"
-            >
+            <q-menu transition-show="jump-down" transition-hide="jump-up">
               <q-list>
-                <q-item clickable v-close-popup to="/profile" >
+                <q-item clickable v-close-popup to="/profile">
                   <q-item-section avatar>
                     <q-avatar icon="face" color="primary" text-color="white" />
                   </q-item-section>
@@ -59,7 +63,11 @@
                 <q-separator inset spaced />
                 <q-item clickable v-close-popup tabindex="0" @click="logout">
                   <q-item-section avatar>
-                    <q-avatar icon="exit_to_app" color="negative" text-color="white" />
+                    <q-avatar
+                      icon="exit_to_app"
+                      color="negative"
+                      text-color="white"
+                    />
                   </q-item-section>
                   <q-item-section>
                     <q-item-label>Log Out</q-item-label>
@@ -82,7 +90,6 @@
     >
       <q-scroll-area class="fit">
         <q-list padding class="text-grey-8">
-
           <q-item class="GNL__drawer-item" v-ripple to="/">
             <q-item-section avatar>
               <q-icon name="home" />
@@ -92,152 +99,80 @@
             </q-item-section>
           </q-item>
 
-          <div v-can="'nav.aside.marketing'">
-          <q-separator inset class="q-my-sm" />
-          <q-item-label header>Marketing &amp; Contents</q-item-label>
-          <q-item v-ripple v-can="'banners.read.index'"  clickable to="/banners">
-            <q-item-section avatar>
-              <q-icon name="ad_units" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Banners</q-item-label>
-            </q-item-section>
-          </q-item>
+          <div v-if="myRoles.includes('job_seeker') || myRoles.includes('superadmin')">
+            <q-separator inset class="q-my-sm" />
+            <q-item-label header>Job Seeker</q-item-label>
 
-          <q-item v-ripple v-can="'contents.read.faq'" clickable to="/faq">
-            <q-item-section avatar>
-              <q-icon name="help_center" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>F.A.Q</q-item-label>
-            </q-item-section>
-          </q-item>
+            <q-expansion-item icon="work" label="Jobs" class="q-my-sm">
+              <q-item clickable v-ripple :inset-level="1" to="/jobs">
+                <q-item-section>Jobs</q-item-section>
+              </q-item>
 
-          <q-item v-ripple v-can="'contents.read.terms'" clickable to="/terms">
-            <q-item-section avatar>
-              <q-icon name="gavel" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Terms &amp; Condition</q-item-label>
-            </q-item-section>
-          </q-item>
+              <q-item clickable v-ripple :inset-level="1" to="/job_applicant">
+                <q-item-section>Applicant</q-item-section>
+              </q-item>
+            </q-expansion-item>
           </div>
 
-          <div v-can="'nav.aside.notifications'">
-          <q-separator inset class="q-my-sm" />
-          <q-item-label header>Notifications</q-item-label>
+          <div v-if="myRoles.includes('recruiter') || myRoles.includes('superadmin')">
+            <q-separator inset class="q-my-sm" />
+            <q-item-label header>Recruiter</q-item-label>
 
-          <q-item v-ripple v-can="'notifications.read.index'" clickable to="/notifications">
-            <q-item-section avatar>
-              <q-icon name="notifications" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Notification</q-item-label>
-            </q-item-section>
-          </q-item>
+            <q-expansion-item icon="work" label="Jobs" class="q-my-sm">
+              <q-item clickable v-ripple :inset-level="1" to="/jobs">
+                <q-item-section>Jobs</q-item-section>
+              </q-item>
 
-          <q-item v-ripple v-can="'notification_templates.read.index'" clickable to="/notificationTemplates">
-            <q-item-section avatar>
-              <q-icon name="feedback" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Notification Template</q-item-label>
-            </q-item-section>
-          </q-item>
-
-          <q-item v-ripple v-can="'format_messages.read.index'" clickable to="/notificationFormats">
-            <q-item-section avatar>
-              <q-icon name="warning" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Notification Format</q-item-label>
-            </q-item-section>
-          </q-item>
+              <q-item clickable v-ripple :inset-level="1" to="/job_applicant">
+                <q-item-section>Applicant</q-item-section>
+              </q-item>
+            </q-expansion-item>
           </div>
 
-          <q-separator inset class="q-my-sm" />
-          <q-item-label header>Administrator</q-item-label>
+          <div v-if="myRoles.includes('superadmin')">
+            <q-separator inset class="q-my-sm" />
+            <q-item-label header>Administrator</q-item-label>
 
-          <q-expansion-item
-            icon="people"
-            label="Users Management"
-            class="q-my-sm"
-          >
-            <q-item clickable v-ripple :inset-level="1" to="/users">
-              <q-item-section>
-                Users
-              </q-item-section>
-            </q-item>
+            <q-expansion-item
+              icon="people"
+              label="Users Management"
+              class="q-my-sm"
+            >
+              <q-item clickable v-ripple :inset-level="1" to="/users">
+                <q-item-section> Users </q-item-section>
+              </q-item>
 
-            <q-item clickable v-ripple :inset-level="1" to="/roles">
-              <q-item-section>
-                Roles
-              </q-item-section>
-            </q-item>
+              <q-item clickable v-ripple :inset-level="1" to="/roles">
+                <q-item-section> Roles </q-item-section>
+              </q-item>
 
-            <q-item clickable v-ripple :inset-level="1" to="/permissions">
-              <q-item-section>
-                Permissions
-              </q-item-section>
-            </q-item>
+              <q-item clickable v-ripple :inset-level="1" to="/permissions">
+                <q-item-section> Permissions </q-item-section>
+              </q-item>
+            </q-expansion-item>
 
-          </q-expansion-item>
+            <q-expansion-item
+              icon="storage"
+              label="Data Master"
+              class="q-my-sm"
+            >
+              <q-item clickable v-ripple :inset-level="1" to="/countries">
+                <q-item-section> Countries </q-item-section>
+              </q-item>
+              <q-item clickable v-ripple :inset-level="1" to="/provinces">
+                <q-item-section> Provinces </q-item-section>
+              </q-item>
+              <q-item clickable v-ripple :inset-level="1" to="/cities">
+                <q-item-section> Cities </q-item-section>
+              </q-item>
+            </q-expansion-item>
 
-          <q-expansion-item
-            icon="storage"
-            label="Data Master"
-            class="q-my-sm"
-          >
-            <q-item clickable v-ripple :inset-level="1" to="/contacts">
-              <q-item-section>
-                Contacts
-              </q-item-section>
-            </q-item>
-            <q-item clickable v-ripple :inset-level="1" to="/addresses">
-              <q-item-section>
-                Addresses
-              </q-item-section>
-            </q-item>
-            <q-item clickable v-ripple :inset-level="1" to="/files">
-              <q-item-section>
-                Files &amp; Media Manager
-              </q-item-section>
-            </q-item>
-          </q-expansion-item>
-
-          <q-expansion-item
-            icon="flag"
-            label="Countries"
-            class="q-my-sm"
-          >
-            <q-item clickable v-ripple :inset-level="1" to="/countries">
-              <q-item-section>
-                Countries
-              </q-item-section>
-            </q-item>
-            <q-item clickable v-ripple :inset-level="1" to="/provinces">
-              <q-item-section>
-                Provinces
-              </q-item-section>
-            </q-item>
-            <q-item clickable v-ripple :inset-level="1" to="/cities">
-              <q-item-section>
-                Cities
-              </q-item-section>
-            </q-item>
-          </q-expansion-item>
-
-          <q-expansion-item
-            icon="settings"
-            label="Settings"
-            class="q-my-sm"
-          >
-            <q-item clickable v-ripple :inset-level="1" to="/sysparam">
-              <q-item-section>
-                Sysparams
-              </q-item-section>
-            </q-item>
-          </q-expansion-item>
+            <q-expansion-item icon="settings" label="Settings" class="q-my-sm">
+              <q-item clickable v-ripple :inset-level="1" to="/sysparam">
+                <q-item-section> Sysparams </q-item-section>
+              </q-item>
+            </q-expansion-item>
+          </div>
         </q-list>
       </q-scroll-area>
     </q-drawer>
@@ -249,59 +184,68 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from "vuex";
 export default {
-  name: 'MainLayout',
-  data () {
+  name: "MainLayout",
+  data() {
     return {
       leftDrawerOpen: true,
-      search: '',
+      search: "",
       storage: 0.26,
-    }
+      myRoles: [],
+    };
   },
   computed: {
     ...mapGetters({
-      profile: 'auth/user',
-      loggedIn: 'auth/loggedIn'
+      profile: "auth/user",
+      loggedIn: "auth/loggedIn",
     }),
-    name () {
-      return this.profile.first_name + ' ' + this.profile.last_name
+    name() {
+      return this.profile.first_name + " " + this.profile.last_name;
     },
-    username () {
-      return this.profile.username
+    username() {
+      return this.profile.username;
+    },
+  },
+  mounted() {
+    const { roles } = this.profile;
+    if (roles) {
+      roles.map((entry) => {
+        this.myRoles.push(entry.name);
+      });
     }
   },
   methods: {
-    ...mapMutations('auth', ['loggedOut']),
-    logout () {
+    ...mapMutations("auth", ["loggedOut"]),
+    logout() {
       this.$q
-      .dialog({
-        title: 'Logout',
-        message: 'Are you sure to logout?',
-        ok: {
-          label: 'Logout',
-          color: 'negative',
-          flat: true
-        },
-        cancel: {
-          label: 'Cancel',
-          color: 'white',
-          textColor: 'black',
-          flat: true
-        },
-        persistent: true
-      })
-      .onOk(() => {
-        this.loggedOut()
-        this.$q.localStorage.clear()
-        this.$q.sessionStorage.clear()
-        this.$q.cookies.remove('authorization_token')
-        this.$q.notify('You\'re logged out')
-        this.$router.push('/login')
-      })
-    }
-  }
-}
+        .dialog({
+          title: "Logout",
+          message: "Are you sure to logout?",
+          ok: {
+            label: "Logout",
+            color: "negative",
+            flat: true,
+          },
+          cancel: {
+            label: "Cancel",
+            color: "white",
+            textColor: "black",
+            flat: true,
+          },
+          persistent: true,
+        })
+        .onOk(() => {
+          this.loggedOut();
+          this.$q.localStorage.clear();
+          this.$q.sessionStorage.clear();
+          this.$q.cookies.remove("authorization_token");
+          this.$q.notify("You're logged out");
+          this.$router.push("/login");
+        });
+    },
+  },
+};
 </script>
 
 <style lang="sass">
