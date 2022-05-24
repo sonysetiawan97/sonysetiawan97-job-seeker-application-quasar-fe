@@ -25,6 +25,8 @@ import sysparam from "./sysparam";
 import jobs from "./jobs";
 import job_applicant from "./jobApplicant";
 
+import companies from './companies';
+
 /*
  * If not building with SSR mode, you can
  * directly export the Store instantiation;
@@ -60,6 +62,9 @@ export default store(function (/* { ssrContext } */) {
       // JOB SEEKER
       jobs,
       job_applicant,
+
+      // MASTER DATA
+      companies,
     },
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only
