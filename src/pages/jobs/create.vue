@@ -40,8 +40,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import FormGenerator from "components/form/FormGenerator";
 import { scroll } from "quasar";
 import { useRoute } from "vue-router";

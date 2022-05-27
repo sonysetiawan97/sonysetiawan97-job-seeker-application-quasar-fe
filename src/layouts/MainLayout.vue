@@ -23,26 +23,6 @@
 
         <q-space />
 
-        <q-input
-          class="GPL__toolbar-input"
-          dense
-          standout="bg-white text-dark"
-          v-model="search"
-          placeholder="Search"
-        >
-          <template v-slot:prepend>
-            <q-icon v-if="search === ''" name="search" />
-            <q-icon
-              v-else
-              name="clear"
-              class="cursor-pointer"
-              @click="search = ''"
-            />
-          </template>
-        </q-input>
-
-        <q-space />
-
         <div class="q-gutter-sm row items-center no-wrap">
           <q-btn round dense flat to="/profile">
             <q-avatar size="26px" icon="face"> </q-avatar>
@@ -113,7 +93,7 @@
               </q-item>
 
               <q-item clickable v-ripple :inset-level="1" to="/job_applicant">
-                <q-item-section>Applicant</q-item-section>
+                <q-item-section>My Applicant</q-item-section>
               </q-item>
             </q-expansion-item>
           </div>

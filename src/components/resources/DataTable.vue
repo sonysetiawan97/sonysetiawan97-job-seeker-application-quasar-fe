@@ -95,6 +95,7 @@
                 v-close-popup
                 tabindex="0"
                 :to="`/${path}/${props.row.id}/edit`"
+                v-can="`${collection}.update.index`"
               >
                 <q-item-section avatar>
                   <q-avatar icon="edit" color="secondary" text-color="white" />
@@ -110,6 +111,7 @@
                 v-close-popup
                 tabindex="0"
                 @click="confirmDelete(props.row.id)"
+                v-can="`${collection}.destroy.index`"
               >
                 <q-item-section avatar>
                   <q-avatar icon="delete" color="negative" text-color="white" />
