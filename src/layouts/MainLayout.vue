@@ -92,7 +92,7 @@
                 <q-item-section>Jobs</q-item-section>
               </q-item>
 
-              <q-item clickable v-ripple :inset-level="1" to="/job_applicant">
+              <q-item clickable v-ripple :inset-level="1" to="/job_applicants">
                 <q-item-section>My Applicant</q-item-section>
               </q-item>
             </q-expansion-item>
@@ -116,7 +116,7 @@
                 <q-item-section>Jobs</q-item-section>
               </q-item>
 
-              <q-item clickable v-ripple :inset-level="1" to="/job_applicant">
+              <q-item clickable v-ripple :inset-level="1" to="/job_applicants">
                 <q-item-section>Applicant</q-item-section>
               </q-item>
             </q-expansion-item>

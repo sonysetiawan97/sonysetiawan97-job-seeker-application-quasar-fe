@@ -23,7 +23,7 @@ import permissions from "./permissions";
 import sysparam from "./sysparam";
 
 import jobs from "./jobs";
-import job_applicant from "./jobApplicant";
+import job_applicants from "./jobApplicants";
 
 import companies from './companies';
 
@@ -61,7 +61,7 @@ export default store(function (/* { ssrContext } */) {
 
       // JOB SEEKER
       jobs,
-      job_applicant,
+      job_applicants,
 
       // MASTER DATA
       companies,

@@ -643,7 +643,7 @@ export default {
       title: "Deleted Job",
     },
   },
-  job_applicant: {
+  job_applicants: {
     index: {
       title: "Job Applicants",
     },
