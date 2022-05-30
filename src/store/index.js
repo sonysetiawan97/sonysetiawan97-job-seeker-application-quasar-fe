@@ -18,6 +18,8 @@ import addresses from "./addresses";
 import contacts from "./contacts";
 import files from "./files";
 
+import user_documents from "./user_documents";
+
 import roles from "./roles";
 import permissions from "./permissions";
 import sysparam from "./sysparam";
@@ -54,6 +56,8 @@ export default store(function (/* { ssrContext } */) {
       addresses,
       contacts,
       files,
+
+      user_documents,
 
       roles,
       permissions,

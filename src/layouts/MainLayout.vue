@@ -237,7 +237,9 @@ export default {
   },
   mounted() {
     const { roles, company } = this.profile;
-    this.myRoles = roles;
+    if (roles) {
+      this.myRoles = roles;
+    }
     if (company) {
       this.myCompany = company;
     }

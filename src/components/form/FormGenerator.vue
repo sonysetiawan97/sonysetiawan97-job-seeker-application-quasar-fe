@@ -121,11 +121,11 @@
                   </q-avatar>
 
                   <div class="ellipsis relative-position">
-                    {{ file.name }}
+                    {{ file.name ? file.name : file.filename ? file.filename : '-' }}
                   </div>
 
                   <q-tooltip>
-                    {{ file.name }}
+                    {{ file.name ? file.name : file.filename ? file.filename : '-' }}
                   </q-tooltip>
                 </q-chip>
                 <q-img
@@ -149,7 +149,7 @@
               :class="`form-${field.name}`"
               v-bind:is="field.type"
               v-model="form[field.name]"
-              :hint="!v$.form[field.name].required ? '-- optional' : ''"
+              :s="!v$.form[field.name].required ? '-- optional' : ''"
               class="q-mb-md"
             />
             <div class="text-weight-light" v-if="field.props.hint">

@@ -2,168 +2,7 @@
   <q-page class="q-pa-md">
     <q-ajax-bar ref="loadingbar" position="top" skip-hijack />
 
-    <q-toolbar class="q-pb-md q-px-none" v-if="user?.role == 'agent'">
-      <q-breadcrumbs>
-        <q-breadcrumbs-el label="Profile" />
-      </q-breadcrumbs>
-      <q-toolbar-title></q-toolbar-title>
-
-      <q-btn
-        flat
-        icon="app_registration"
-        class="q-ml-sm"
-        label="Enrollments"
-        :to="`/profile/enrollments?role=agent`"
-      />
-      <q-btn
-        flat
-        icon="card_membership"
-        class="q-ml-sm"
-        label="Memberships"
-        :to="`/profile/memberships?role=agent`"
-      />
-      <q-btn
-        flat
-        icon="badge"
-        class="q-ml-sm"
-        label="Agents"
-        :to="`/profile/agents?referral_id=${user.den_id}`"
-      />
-      <q-btn
-        flat
-        icon="school"
-        class="q-ml-sm"
-        label="Students"
-        :to="`/profile/students?referral_id=${user.den_id}`"
-      />
-      
-      <q-btn flat round dense icon="more_vert">
-        <q-menu transition-show="jump-down" transition-hide="jump-up">
-          <q-list>
-            <q-item clickable v-close-popup :to="`/profile/identity`">
-              <q-item-section avatar>
-                <q-avatar
-                  icon="fingerprint"
-                  color="primary"
-                  text-color="white"
-                />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>ID</q-item-label>
-                <q-item-label caption>ID Photo</q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable v-close-popup :to="`/profile/account`">
-              <q-item-section avatar>
-                <q-avatar icon="payment" color="primary" text-color="white" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>Account</q-item-label>
-                <q-item-label caption>Bank Account</q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <q-separator inset spaced />
-
-            <!--
-            <q-item clickable v-close-popup @click="dialogRole=true">
-              <q-item-section avatar>
-                <q-avatar icon="face" color="primary" text-color="white" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>Role</q-item-label>
-                <q-item-label caption>User Roles</q-item-label>
-              </q-item-section>
-            </q-item>
-            -->
-            <q-item clickable v-close-popup @click="dialogPassword = true">
-              <q-item-section avatar>
-                <q-avatar icon="lock" color="primary" text-color="white" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>Password</q-item-label>
-                <q-item-label caption>Change Password</q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <!--
-            <q-separator inset spaced />
-            <q-item clickable v-close-popup tabindex="0" v-if="form.status=='active'">
-              <q-item-section avatar>
-                <q-avatar icon="close" color="negative" text-color="white" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>Deactivate</q-item-label>
-                <q-item-label caption>Deactivate Account</q-item-label>
-              </q-item-section>
-            </q-item>
-            -->
-          </q-list>
-        </q-menu>
-      </q-btn>
-    </q-toolbar>
-    <q-toolbar class="q-pb-md q-px-none" v-else-if="user?.role == 'student'">
-      <q-breadcrumbs>
-        <q-breadcrumbs-el label="Profile" />
-      </q-breadcrumbs>
-      <q-toolbar-title></q-toolbar-title>
-
-      <q-btn
-        flat
-        icon="app_registration"
-        class="q-ml-sm"
-        label="Enrollments"
-        :to="`/profile/enrollments?role=student`"
-      />
-      <q-btn
-        flat
-        icon="card_membership"
-        class="q-ml-sm"
-        label="Tuitions"
-        :to="`/profile/tuitions?role=student`"
-      />
-      <q-btn flat round dense icon="more_vert">
-        <q-menu transition-show="jump-down" transition-hide="jump-up">
-          <q-list>
-            <q-separator inset spaced />
-            <!--
-            <q-item clickable v-close-popup @click="dialogRole=true">
-              <q-item-section avatar>
-                <q-avatar icon="face" color="primary" text-color="white" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>Role</q-item-label>
-                <q-item-label caption>User Roles</q-item-label>
-              </q-item-section>
-            </q-item>
-            -->
-            <q-item clickable v-close-popup @click="dialogPassword = true">
-              <q-item-section avatar>
-                <q-avatar icon="lock" color="primary" text-color="white" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>Password</q-item-label>
-                <q-item-label caption>Change Password</q-item-label>
-              </q-item-section>
-            </q-item>
-            <!--
-            <q-separator inset spaced />
-            <q-item clickable v-close-popup tabindex="0" v-if="form.status=='active'">
-              <q-item-section avatar>
-                <q-avatar icon="close" color="negative" text-color="white" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>Deactivate</q-item-label>
-                <q-item-label caption>Deactivate Account</q-item-label>
-              </q-item-section>
-            </q-item>
-            -->
-          </q-list>
-        </q-menu>
-      </q-btn>
-    </q-toolbar>
-    <q-toolbar class="q-pb-md q-px-none" v-else>
+    <q-toolbar class="q-pb-md q-px-none">
       <q-breadcrumbs>
         <q-breadcrumbs-el label="Profile" />
       </q-breadcrumbs>
@@ -176,33 +15,9 @@
         label="Password"
         @click="dialogPassword = true"
       />
-      <!-- <q-btn flat icon="face" color="secondary" class="q-ml-sm" label="Role" @click="dialogRole=true" /> -->
     </q-toolbar>
 
     <div class="text-h5">User Profile</div>
-
-    <q-item>
-      <q-item-section side>
-        <q-avatar round size="72px" clickable v-ripple>
-          <img :src="photo.fullpath" v-if="photo" @click="popupimage = true" />
-          <q-icon name="account_circle" v-else />
-        </q-avatar>
-      </q-item-section>
-      <q-item-section>
-        <q-file
-          v-model="avatar.file"
-          label="Upload new photo"
-          filled
-          style="max-width: 300px"
-          accept="image/*"
-          @update:model-value="fileSelected"
-        >
-          <template v-slot:prepend>
-            <q-icon name="account_circle" />
-          </template>
-        </q-file>
-      </q-item-section>
-    </q-item>
 
     <FormGenerator
       ref="formGenerator"
@@ -211,18 +26,6 @@
       :layout="layout"
       :validation="validation"
       :id="id"
-    />
-
-    <q-separator inset class="q-my-md" />
-    <div class="text-h6">Address</div>
-
-    <FormAdditionalGenerator
-      ref="formAddGenerator"
-      :collection="'addresses'"
-      :stateForm="stateForm"
-      :layout="addressLayout"
-      :validation="addressValidation"
-      :id="formAddID"
     />
 
     <q-dialog v-model="dialogPassword" persistent>
@@ -326,26 +129,16 @@
       </q-card>
     </q-dialog>
 
-    <q-dialog v-model="popupimage">
-      <q-img :src="photo.fullpath" width="50%" contain />
-    </q-dialog>
-
     <q-footer reveal elevated class="bg-white text-black">
       <q-toolbar style="height: 64px">
         <q-space />
-        <!--
-        <q-btn flat label="Cancel" :to="`/${collection}`" />
-        <q-btn icon="close" v-if="form.status=='active'" class="q-mr-md" flat color="negative" label="Deactivate Account" />
-        <q-separator v-if="form.status=='active'" vertical inset class="q-mr-md" />
-        <q-btn icon="delete" flat color="negative" label="Delete" @click="confirmDelete(id)" />
-        -->
         <q-btn
-          icon="edit"
+          icon="check"
           :loading="loading"
           class="q-ml-md bg-primary text-white"
           color="secondary"
-          label="Edit Profile"
-          :to="`/profile/edit`"
+          label="confirm"
+          @click="updateProfile()"
         />
       </q-toolbar>
     </q-footer>
@@ -358,14 +151,10 @@ import { useStore } from "vuex";
 import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
 import FormGenerator from "components/form/FormGenerator";
-import FormAdditionalGenerator from "components/form/FormAdditionalGenerator";
-import { QFile } from "quasar";
 
 export default {
   components: {
     FormGenerator,
-    FormAdditionalGenerator,
-    QFile,
   },
   props: {
     collection: {
@@ -375,8 +164,8 @@ export default {
   },
   setup() {
     const $store = useStore();
-    const id = $store.state.auth.user.id;
     const user = $store.state.auth.user;
+    const id = user.user.id;
     return {
       id,
       user,
@@ -386,7 +175,6 @@ export default {
   provide() {
     return {
       form: this.form,
-      formAdd: this.addressForm,
     };
   },
   mounted() {
@@ -396,7 +184,7 @@ export default {
     this.loading = true;
 
     const params = {
-      relationship: ["photo", "address"],
+      relationship: "cv",
     };
 
     $store
@@ -409,21 +197,15 @@ export default {
         this.loading = false;
         loadingbar.stop();
         const keys = Object.keys(this.form);
+        console.log(data);
         for (const i in keys) {
           const key = keys[i];
           this.form[key] = data[key];
         }
-        this.photo = data.photo;
 
-        const address = data.address;
-        this.formAddID = address.id;
-        const keysAdd = Object.keys(this.addressForm);
-        for (const i in keysAdd) {
-          const key = keysAdd[i];
-          this.addressForm[key] = address[key];
-        }
+        console.log(this.form)
+
         this.$refs.formGenerator.setFormData(this.form);
-        this.$refs.formAddGenerator.setFormData(this.addressForm);
       })
       .catch((error) => {
         this.loading = false;
@@ -481,28 +263,17 @@ export default {
   },
   data() {
     return {
-      stateForm: "show", // create, update, show
-      formAddID: null,
+      stateForm: "update", // create, update, show
       isPwd: true,
       loading: false,
       dialogPassword: false,
       dialogRole: false,
       roles: [],
       rolesSelected: [],
-      // user: null,
       change: {
         password: null,
         password_confirmation: null,
       },
-      avatar: {
-        file: null,
-        foreign_table: "users",
-        foreign_id: null,
-        directory: "users/profile",
-        type: "image",
-      },
-      photo: null,
-      popupimage: false,
     };
   },
   methods: {
@@ -607,37 +378,35 @@ export default {
           });
       }
     },
-    readSrcFile(file) {
-      return URL.createObjectURL(file);
-    },
-    fileSelected(file) {
-      if (file) {
-        const { loadingbar } = this.$refs;
-        loadingbar.start();
-        const data = this.avatar;
-        data.foreign_id = this.id;
-        this.upload({ data })
-          .then((response) => {
-            const { data } = response;
-            this.photo = data;
-          })
-          .catch((error) => {
-            if (error.response) {
-              const { data } = error.response;
-              this.$q.dialog({
-                title: `${data.status}`,
-                message: `${data.message}`,
-                ok: {
-                  flat: true,
-                },
-                persistent: true,
-              });
-            }
-          })
-          .finally(() => {
-            loadingbar.stop();
-          });
-      }
+    updateProfile() {
+      const params = { ...this.form };
+      const headers = { "Content-Type": "multipart/form-data" };
+      this.$store
+        .dispatch(`users/updateProfile`, {
+          data: params,
+          headers: headers,
+        })
+        .then((response) => {
+          const { message } = response;
+          if (message) {
+            this.$q.notify({
+              message: message,
+              color: "green",
+              position: "top",
+            });
+          }
+        })
+        .catch((err) => {
+          const { data } = err.response;
+          if (data) {
+            const { message } = data;
+            this.$q.notify({
+              message: message,
+              color: "red",
+              position: "top",
+            });
+          }
+        });
     },
   },
   computed: {
@@ -656,14 +425,14 @@ export default {
       },
     }),
     ...mapState({
-      addressValidation(state, getters) {
-        return getters[`addresses/validation`];
+      userDocumentsValidation(state, getters) {
+        return getters[`user_documents/validation`];
       },
-      addressForm(state, getters) {
-        return getters[`addresses/form`];
+      userDocumentsForm(state, getters) {
+        return getters[`user_documents/form`];
       },
-      addressLayout(state, getters) {
-        return getters[`addresses/layout`];
+      userDocumentsLayout(state, getters) {
+        return getters[`user_documents/layout`];
       },
     }),
     readonly() {
