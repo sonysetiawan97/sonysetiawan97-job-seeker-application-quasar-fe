@@ -18,7 +18,7 @@ import addresses from "./addresses";
 import contacts from "./contacts";
 import files from "./files";
 
-import user_documents from "./user_documents";
+import user_experiences from "./user_experiences";
 
 import roles from "./roles";
 import permissions from "./permissions";
@@ -26,6 +26,9 @@ import sysparam from "./sysparam";
 
 import jobs from "./jobs";
 import job_applicants from "./jobApplicants";
+
+import skills from "./skills";
+import user_skill from "./user_skill";
 
 import companies from './companies';
 
@@ -57,7 +60,7 @@ export default store(function (/* { ssrContext } */) {
       contacts,
       files,
 
-      user_documents,
+      user_experiences,
 
       roles,
       permissions,
@@ -66,9 +69,11 @@ export default store(function (/* { ssrContext } */) {
       // JOB SEEKER
       jobs,
       job_applicants,
+      user_skill,
 
       // MASTER DATA
       companies,
+      skills,
     },
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only

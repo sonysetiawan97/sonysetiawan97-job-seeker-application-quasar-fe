@@ -162,6 +162,7 @@
             stack-label
             v-bind="field.props"
             v-on="field.events"
+            :hint="!v$.formAdd[field.name].required ? '-- optional' : ''"
             :error="v$.formAdd[field.name].$error"
             clearable
           />
@@ -315,7 +316,14 @@ export default {
   },
   methods: {
     setFormData(data) {
-      this.formAdd = data;
+      const keys = Object.keys(this.formAdd);
+      for (const i in keys) {
+        const key = keys[i];
+        this.formAdd[key] = data[key];
+      }
+    },
+    baseValue(form) {
+      this.formAdd = { ...form };
     },
     resetForm() {
       this.$refs.formAddComponent.reset();

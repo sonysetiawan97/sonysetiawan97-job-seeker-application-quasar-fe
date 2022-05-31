@@ -28,6 +28,184 @@
       :id="id"
     />
 
+    <div v-if="isJobSeeker">
+      <q-separator inset class="q-my-md" />
+      <q-toolbar class="q-pb-md q-px-none">
+        <div class="col text-h6">Experiences</div>
+
+        <q-btn
+          flat
+          icon="add"
+          class="q-ml-sm"
+          label="Add"
+          @click="openDialogExperience(null, isJobSeeker)"
+        />
+      </q-toolbar>
+      <div class="q-pa-md">
+        <q-list bordered separator>
+          <q-item v-ripple v-if="experiences.length == 0">
+            <q-item-section>
+              <q-item-label class="text-h6 text-center">
+                No Experiences</q-item-label
+              ></q-item-section
+            >
+          </q-item>
+          <q-item
+            clickable
+            v-ripple
+            v-for="(item, key) in experiences"
+            :key="`index-experiences-${key}`"
+            @click="openDialogExperience(item.id, isJobSeeker)"
+          >
+            <q-item-section>
+              <q-item-label class="text-bold q-mb-md">{{
+                item.title
+              }}</q-item-label>
+              <q-item-label
+                >Job Description: {{ item.job_description }}</q-item-label
+              >
+              <q-item-label>Location: {{ item.location }}</q-item-label>
+              <q-item-label class="q-mb-md"
+                >Company: {{ item.company_name }}</q-item-label
+              >
+              <q-item-label caption
+                >{{ item.start_date }} -
+                {{ item.end_date ? item.end_date : "present" }}</q-item-label
+              >
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </div>
+
+      <q-separator inset class="q-my-md" />
+      <q-toolbar class="q-pb-md q-px-none">
+        <div class="col text-h6">Skills</div>
+
+        <q-btn
+          flat
+          icon="add"
+          class="q-ml-sm"
+          label="Add"
+          @click="dialogSkills = true"
+        />
+      </q-toolbar>
+
+      <div class="q-pa-md">
+        <q-list bordered separator>
+          <q-item v-ripple v-if="skills.length == 0">
+            <q-item-section>
+              <q-item-label class="text-h6 text-center">
+                No Skills</q-item-label
+              ></q-item-section
+            >
+          </q-item>
+          <q-item
+            v-ripple
+            v-for="(item, key) in skills"
+            :key="`index-skills-${key}`"
+          >
+            <q-item-section>
+              <q-item-label>{{ item.name }}</q-item-label>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </div>
+    </div>
+
+    <q-dialog v-model="dialogSkills" persistent>
+      <q-card style="min-width: 75vw">
+        <q-card-section>
+          <div class="text-h6">Skills</div>
+        </q-card-section>
+        <q-card-section class="q-pt-none">
+          <div class="row q-gutter-md q-my-md">
+            <div class="col">
+              <q-select
+                outlined
+                v-model="selectedPemission"
+                :readonly="readonly"
+                label="Skills"
+                stack-label
+                use-input
+                map-options
+                option-value="id"
+                option-label="name"
+                clearable
+                @filter="onFilterSelect"
+                :options="skillOptions"
+                @update:model-value="onSkillSelected"
+              >
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-italic text-grey">
+                      Data not found
+                    </q-item-section>
+                  </q-item>
+                </template>
+              </q-select>
+            </div>
+          </div>
+          <div class="row q-gutter-md q-my-md">
+            <div class="col">
+              <q-chip
+                removable
+                color="primary"
+                @remove="removeSkillsAt(index)"
+                text-color="white"
+                v-for="(item, index) of skillsList"
+                :key="index"
+              >
+                {{ item.name }}
+              </q-chip>
+            </div>
+          </div>
+        </q-card-section>
+        <q-card-actions align="right" class="text-primary">
+          <q-btn flat label="Cancel" v-close-popup />
+          <q-btn
+            flat
+            label="Submit"
+            :disabled="readonly"
+            :loading="loading"
+            @click="updateSkills"
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+
+    <q-dialog v-model="dialogExperience" persistent>
+      <q-card style="min-width: 75vw">
+        <q-card-section>
+          <div class="text-h6">Experiences</div>
+        </q-card-section>
+        <q-card-section>
+          <FormAdditionalGenerator
+            ref="formAddGenerator"
+            :collection="'user_experiences'"
+            :stateForm="stateForm"
+            :layout="userExperiencesLayout"
+            :validation="userExperiencesValidation"
+          />
+        </q-card-section>
+        <q-card-section class="q-mb-lg">
+          <q-btn
+            icon="check"
+            class="bg-primary text-white q-ml-sm"
+            color="secondary float-right"
+            label="Submit"
+            @click="saveExperience()"
+          />
+          <q-btn
+            icon="cancel"
+            class="bg-red text-white"
+            color="secondary float-right"
+            label="cancel"
+            @click="closeDialogExperience"
+          />
+        </q-card-section>
+      </q-card>
+    </q-dialog>
+
     <q-dialog v-model="dialogPassword" persistent>
       <q-card style="min-width: 350px">
         <q-card-section>
@@ -146,15 +324,17 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from "vuex";
+import { mapState, mapActions } from "vuex";
 import { useStore } from "vuex";
 import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
 import FormGenerator from "components/form/FormGenerator";
+import FormAdditionalGenerator from "components/form/FormAdditionalGenerator";
 
 export default {
   components: {
     FormGenerator,
+    FormAdditionalGenerator,
   },
   props: {
     collection: {
@@ -166,15 +346,24 @@ export default {
     const $store = useStore();
     const user = $store.state.auth.user;
     const id = user.user.id;
+    let isJobSeeker = false;
+    const { roles } = user.user;
+    roles.map((entry) => {
+      if (entry.name == "job_seeker") {
+        isJobSeeker = true;
+      }
+    });
     return {
       id,
       user,
+      isJobSeeker,
       v$: useVuelidate(),
     };
   },
   provide() {
     return {
       form: this.form,
+      formAdd: this.userExperiencesForm,
     };
   },
   mounted() {
@@ -183,9 +372,11 @@ export default {
     loadingbar.start();
     this.loading = true;
 
-    const params = {
-      relationship: "cv",
-    };
+    let params = {};
+
+    if (this.isJobSeeker) {
+      params["relationship"] = ["cv", "experiences", "skills"];
+    }
 
     $store
       .dispatch(`${this.collection}/detail`, { id: this.id, params })
@@ -197,15 +388,23 @@ export default {
         this.loading = false;
         loadingbar.stop();
         const keys = Object.keys(this.form);
-        console.log(data);
         for (const i in keys) {
           const key = keys[i];
           this.form[key] = data[key];
         }
 
-        console.log(this.form)
+        const { experiences } = data;
+        if (experiences) {
+          this.experiences = experiences;
+        }
+
+        const { skills } = data;
+        if (skills) {
+          this.skills = skills;
+        }
 
         this.$refs.formGenerator.setFormData(this.form);
+        this.baseFormExperiences = { ...this.userExperiencesForm };
       })
       .catch((error) => {
         this.loading = false;
@@ -266,10 +465,20 @@ export default {
       stateForm: "update", // create, update, show
       isPwd: true,
       loading: false,
+      skillOptions: [],
       dialogPassword: false,
+      dialogExperience: false,
+      dialogSkills: false,
       dialogRole: false,
       roles: [],
+      experiences: [],
+      skills: [],
+      skillsList: [],
+      baseFormExperiences: {},
       rolesSelected: [],
+      userExperiencesCollection: "user_experiences",
+      skillsCollection: "skills",
+      userSkillCollection: "user_skill",
       change: {
         password: null,
         password_confirmation: null,
@@ -378,6 +587,96 @@ export default {
           });
       }
     },
+    async openDialogExperience(id = null, isJobSeeker = false) {
+      if (!isJobSeeker) {
+        return;
+      }
+
+      this.dialogExperience = true;
+      await new Promise((r) => setTimeout(r, 200));
+
+      if (id) {
+        const params = {};
+        this.$store
+          .dispatch(`${this.userExperiencesCollection}/detail`, {
+            id: id,
+            params: params,
+          })
+          .then((response) => {
+            const { data } = response;
+            const keys = Object.keys(this.userExperiencesForm);
+            for (const i in keys) {
+              const key = keys[i];
+              this.userExperiencesForm[key] = data[key];
+            }
+            this.fillDialogExperience(this.userExperiencesForm);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      } else {
+        this.fillDialogExperience(this.baseFormExperiences);
+      }
+    },
+    fillDialogExperience(form) {
+      this.$refs.formAddGenerator.setFormData(form);
+    },
+    closeDialogExperience() {
+      this.dialogExperience = false;
+      this.fillDialogExperience(this.baseFormExperiences);
+    },
+    saveExperience() {
+      let params = {};
+      const headers = { "Content-Type": "multipart/form-data" };
+      const body = {
+        ...this.$refs.formAddGenerator.formAdd,
+        user_id: this.id,
+      };
+      const { id } = body;
+      let action = "create";
+      params["headers"] = headers;
+      params["data"] = body;
+      if (id) {
+        action = "update";
+        params["id"] = id;
+      }
+      this.$store
+        .dispatch(`${this.userExperiencesCollection}/${action}`, { ...params })
+        .then((response) => {
+          const { message } = response;
+          if (message) {
+            this.$q.notify({
+              message: message,
+              color: "green",
+              position: "top",
+            });
+          }
+          this.$store
+            .dispatch(`${this.userExperiencesCollection}/fetch`, {
+              params: { user_id: this.id },
+            })
+            .then((response) => {
+              const { data } = response;
+              this.experiences = data;
+            });
+          this.closeDialogExperience();
+        })
+        .catch((error) => {
+          console.error(error);
+          const { response } = error;
+          if (response) {
+            const { data } = error.response;
+            if (data) {
+              const { message } = data;
+              this.$q.notify({
+                message: message,
+                color: "red",
+                position: "top",
+              });
+            }
+          }
+        });
+    },
     updateProfile() {
       const params = { ...this.form };
       const headers = { "Content-Type": "multipart/form-data" };
@@ -408,6 +707,85 @@ export default {
           }
         });
     },
+    onFilterSelect(search, update, abort) {
+      const params = {
+        search,
+      };
+      this.$store
+        .dispatch(`${this.skillsCollection}/fetch`, { params })
+        .then((response) => {
+          const { data } = response;
+          update(() => {
+            this.skillOptions = data;
+          });
+        })
+        .catch((error) => {
+          if (error.response) {
+            const { data } = error.response;
+            this.$q.dialog({
+              title: `${data.status}`,
+              message: `${data.message}`,
+              ok: {
+                flat: true,
+              },
+              persistent: true,
+            });
+          }
+        });
+    },
+
+    onSkillSelected(value) {
+      this.skillsList.push(value);
+    },
+
+    removeSkillsAt(index) {
+      this.skillsList = this.skillsList.slice(0, index);
+    },
+
+    updateSkills() {
+      this.loading = true;
+      let skillPayload = [];
+      this.skillsList.map((entry) => {
+        skillPayload.push(entry.id);
+      });
+      const payload = {
+        data: {
+          skills: skillPayload,
+        },
+        headers: { "Content-Type": "multipart/form-data" },
+      };
+      this.$store
+        .dispatch(`${this.userSkillCollection}/update_skill`, payload)
+        .then((response) => {
+          const { data, status, message } = response;
+          this.skills = data;
+          this.$q.dialog({
+            title: `${status}`,
+            message: `${message}`,
+            ok: {
+              flat: true,
+            },
+            persistent: true,
+          });
+        })
+        .catch((error) => {
+          if (error.response) {
+            const { data } = error.response;
+            this.$q.dialog({
+              title: `${data.status}`,
+              message: `${data.message}`,
+              ok: {
+                flat: true,
+              },
+              persistent: true,
+            });
+          }
+        })
+        .finally(() => {
+          this.loading = false;
+          this.dialogSkills = false;
+        });
+    },
   },
   computed: {
     ...mapState({
@@ -425,14 +803,14 @@ export default {
       },
     }),
     ...mapState({
-      userDocumentsValidation(state, getters) {
-        return getters[`user_documents/validation`];
+      userExperiencesValidation(state, getters) {
+        return getters[`user_experiences/validation`];
       },
-      userDocumentsForm(state, getters) {
-        return getters[`user_documents/form`];
+      userExperiencesForm(state, getters) {
+        return getters["user_experiences/form"];
       },
-      userDocumentsLayout(state, getters) {
-        return getters[`user_documents/layout`];
+      userExperiencesLayout(state, getters) {
+        return getters[`user_experiences/layout`];
       },
     }),
     readonly() {
