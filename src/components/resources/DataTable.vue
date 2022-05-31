@@ -67,7 +67,7 @@
       </q-input>
     </template>
 
-    <template v-slot:body-cell-action="props">
+    <template v-slot:body-cell-action="props" v-if="rowOptionsClickable">
       <q-td v-show="isStateFormEntries" :props="props" @click.stop.prevent>
         <q-btn flat round dense icon="more_vert">
           <q-menu transition-show="jump-down" transition-hide="jump-up">
@@ -256,6 +256,14 @@ export default {
       type: String,
       default: null,
     },
+    rowOptionsClickable: {
+      type: Boolean,
+      default: true,
+    },
+    eventsClick: {
+      type: Function,
+      default: null,
+    },
   },
   setup(props) {
     return {
@@ -265,7 +273,11 @@ export default {
   data() {
     const events = {};
     if (this.rowclickable) {
-      events["rowClick"] = this.rowClick;
+      if (this.eventsClick) {
+        events["rowClick"] = this.eventsClick;
+      } else {
+        events["rowClick"] = this.rowClick;
+      }
     }
 
     return {

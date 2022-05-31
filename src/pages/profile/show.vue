@@ -342,35 +342,36 @@ export default {
       default: null,
     },
   },
-  setup() {
-    const $store = useStore();
-    const user = $store.state.auth.user;
-    const id = user.user.id;
-    let isJobSeeker = false;
-    const { roles } = user.user;
-    roles.map((entry) => {
-      if (entry.name == "job_seeker") {
-        isJobSeeker = true;
-      }
-    });
-    return {
-      id,
-      user,
-      isJobSeeker,
-      v$: useVuelidate(),
-    };
-  },
+  setup() {},
   provide() {
     return {
       form: this.form,
       formAdd: this.userExperiencesForm,
     };
   },
-  mounted() {
-    const $store = useStore();
+  async mounted() {
+    await new Promise((r) => setTimeout(r, 200));
     const { loadingbar } = this.$refs;
     loadingbar.start();
     this.loading = true;
+
+    const user = this.$store.state.auth.user;
+
+    this.id = user.user.id;
+    this.isJobSeeker = false;
+    const { roles } = user.user;
+    let myRoles = [];
+    roles.map((entry) => {
+      const { name } = entry;
+      if (name) {
+        myRoles.push(name);
+      } else {
+        myRoles.push(entry);
+      }
+    });
+    if (myRoles.includes("job_seeker")) {
+      this.isJobSeeker = true;
+    }
 
     let params = {};
 
@@ -378,12 +379,11 @@ export default {
       params["relationship"] = ["cv", "experiences", "skills"];
     }
 
-    $store
+    this.$store
       .dispatch(`${this.collection}/detail`, { id: this.id, params })
       .then((response) => {
         const { data } = response;
         this.user = data;
-        $store.commit("auth/setUser", data);
 
         this.loading = false;
         loadingbar.stop();
@@ -420,7 +420,7 @@ export default {
         });
       });
 
-    $store
+    this.$store
       .dispatch(`roles/fetch`)
       .then((response) => {
         const { data } = response;
@@ -440,7 +440,7 @@ export default {
         });
       });
 
-    $store
+    this.$store
       .dispatch(`${this.collection}/roles`, { id: this.id })
       .then((response) => {
         const { data } = response;

@@ -78,22 +78,37 @@ export default {
       form: this.form,
     };
   },
-  mounted() {
-    const { roles } = this.profile;
-    this.myRoles = roles;
+  async mounted() {
+    await new Promise((r) => setTimeout(r, 200));
+    const { loadingbar } = this.$refs;
+    loadingbar.start();
+    this.loading = true;
+
+    const auth = this.$store.state.auth.user;
+    const { user } = auth;
+
+    if (!user) {
+      return;
+    }
+
+    const { roles } = user;
+
+    roles.map((entry) => {
+      const { name } = entry;
+      if (name) {
+        this.myRoles.push(name);
+      } else {
+        this.myRoles.push(entry);
+      }
+    });
 
     if (this.myRoles.includes("job_seeker")) {
       this.allowApply = true;
     }
 
-    const $store = useStore();
-    const { loadingbar } = this.$refs;
-    loadingbar.start();
-    this.loading = true;
-
     const params = this.params;
 
-    $store
+    this.$store
       .dispatch(`${this.storeCollection}/detail`, { id: this.id, params })
       .then((response) => {
         const { data } = response;
@@ -128,7 +143,7 @@ export default {
       id,
       isPwd: true,
       loading: false,
-      myRoles: null,
+      myRoles: [],
       allowApply: false,
     };
   },
